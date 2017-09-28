@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Moment</string>
+
+    <string name="title_activity_initial_start">InitialStartActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="InitialStartInformationTxt">Initial Start Information Text</string>
+    <string name="go_to_app_btn">Go To The Application</string>
 </resources>
