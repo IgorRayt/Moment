@@ -61,7 +61,7 @@
             android:paddingTop="10dp"/>
 
         <SeekBar
-            android:id="@+id/seekBar2"
+            android:id="@+id/seekbar_final_phone_time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -83,8 +83,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Yes"
-                android:padding="5dp"/>
+                android:checked="true"
+                android:padding="5dp"
+                android:text="Yes" />
 
             <RadioButton
                 android:id="@+id/rad_btn_data_share_no"
