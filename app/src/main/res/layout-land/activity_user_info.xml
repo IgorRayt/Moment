@@ -12,6 +12,7 @@
         android:orientation="vertical"
         android:padding="8dp">
 
+
         <TextView
             android:id="@+id/lbl_name"
             android:layout_width="match_parent"
@@ -67,8 +68,8 @@
                 android:layout_width="56dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:text="5 hours"
-                android:gravity="right"/>
+                android:gravity="right"
+                android:text="5 hours" />
         </RelativeLayout>
 
         <TextView
@@ -97,8 +98,8 @@
                 android:layout_width="56dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:text="2 hours"
-                android:gravity="right"/>
+                android:gravity="right"
+                android:text="2 hours" />
         </RelativeLayout>
 
         <TextView
@@ -110,7 +111,7 @@
 
         <RadioGroup
             android:id="@+id/rad_group_data_share"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
@@ -120,7 +121,10 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:checked="true"
-                android:padding="4dp"
+                android:paddingRight="32dp"
+                android:paddingTop="4dp"
+                android:paddingLeft="4dp"
+                android:paddingBottom="4dp"
                 android:text="Yes" />
 
             <RadioButton
@@ -128,7 +132,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:padding="4dp"
+                android:paddingRight="32dp"
+                android:paddingTop="4dp"
+                android:paddingLeft="4dp"
+                android:paddingBottom="4dp"
                 android:text="No" />
         </RadioGroup>
 
