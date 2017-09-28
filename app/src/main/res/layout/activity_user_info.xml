@@ -10,14 +10,16 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="10dp">
+        android:padding="8dp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="1dp">
 
 
         <TextView
             android:id="@+id/lbl_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="10dp"
+            android:paddingTop="8dp"
             android:text="Your Name" />
 
         <EditText
@@ -31,7 +33,7 @@
             android:id="@+id/lbl_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="10dp"
+            android:paddingTop="8dp"
             android:text="Your email" />
 
         <EditText
@@ -45,32 +47,69 @@
             android:id="@+id/lbl_initial_time_amount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="10dp"
+            android:paddingTop="8dp"
             android:text="How much time you send for phone per day" />
 
-        <SeekBar
-            android:id="@+id/seekbar_initial_time_for_phone"
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <SeekBar
+                android:id="@+id/seekbar_initial_time_for_phone"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/lbl_seekbar_initial_time_for_phone"
+                android:max="12"
+                android:paddingRight="8dp"
+                android:progress="5" />
+
+            <TextView
+                android:id="@+id/lbl_seekbar_initial_time_for_phone"
+                android:layout_width="56dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="5 hours"
+                android:gravity="right"/>
+        </RelativeLayout>
 
         <TextView
             android:id="@+id/lbl_target_phone_time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="How much time you want to send for phone per day?"
-            android:paddingTop="10dp"/>
+            android:paddingTop="8dp"
+            android:text="How much time you want to send for phone per day?" />
 
-        <SeekBar
-            android:id="@+id/seekbar_final_phone_time"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <SeekBar
+                android:id="@+id/seekbar_final_phone_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/lbl_seekbar_final_phone_time"
+                android:max="12"
+                android:paddingRight="8dp"
+                android:progress="2" />
+
+            <TextView
+                android:id="@+id/lbl_seekbar_final_phone_time"
+                android:layout_width="56dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="2 hours"
+                android:gravity="right"/>
+        </RelativeLayout>
 
         <TextView
             android:id="@+id/textView7"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Do you want to share your information with us?"
-            android:paddingTop="10dp"/>
+            android:paddingTop="8dp"
+            android:text="Do you want to share your information with us?" />
 
         <RadioGroup
             android:id="@+id/rad_group_data_share"
@@ -84,7 +123,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:checked="true"
-                android:padding="5dp"
+                android:padding="4dp"
                 android:text="Yes" />
 
             <RadioButton
@@ -92,8 +131,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="No"
-                android:padding="5dp"/>
+                android:padding="4dp"
+                android:text="No" />
         </RadioGroup>
 
         <Button
