@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     private void fillInUserData(){
         Bundle extras = getIntent().getExtras();
 
-        TextView userNameLbl = (TextView)findViewById(R.id.lbl_name);
+        TextView userNameLbl = (TextView)findViewById(R.id.lbl_user_name);
         TextView userEmailLbl = (TextView)findViewById(R.id.lbl_user_email);
         TextView usePhoneUseLbl = (TextView)findViewById(R.id.lbl_phone_use);
         TextView userDataShareLbl = (TextView)findViewById(R.id.lbl_data_share);
@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
             userEmailLblText = String.format("Your Email is %s", userEmail);
             phoneUseLblText = String.format("Your current phone user is %s hours " +
                     "per day. You target is %s hours per day", intialPhoneTime, finalPhoneTime);
-            if (data_share_agreement == "Yes") {
+            if (data_share_agreement.equals("Yes")) {
                 userDataShareLblText = "Thank you for sharing your data!";
             }
             else{

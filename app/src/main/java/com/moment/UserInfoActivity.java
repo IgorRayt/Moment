@@ -1,5 +1,6 @@
 package com.moment;
 
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.Intent;
@@ -9,6 +10,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class UserInfoActivity extends AppCompatActivity {
@@ -94,11 +96,29 @@ public class UserInfoActivity extends AppCompatActivity {
     }
 
     public void btn_start_application_press(View view){
-        collectUserInformation();
-        Intent user_info_intent = new Intent(this, MainActivity.class);
-        user_info_intent.putExtra("userDataArray", collectUserInformation());
-        startActivity(user_info_intent);
 
+        checkUserInformation();
+    }
+
+    private void checkUserInformation(){
+        EditText userNameTextField = (EditText)findViewById(R.id.txt_name);
+        EditText userEmailTextField = (EditText)findViewById(R.id.txt_email);
+        if(userNameTextField.getText().toString().equals("") ||
+                userNameTextField.getText().toString().equals(" ") ||
+                userEmailTextField.getText().toString().equals("")||
+                userEmailTextField.getText().toString().equals(" ")){
+            Context context = getApplicationContext();
+            CharSequence text = "Error! User name or email is missing.";
+            int duration = Toast.LENGTH_LONG;
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+        }
+        else{
+            collectUserInformation();
+            Intent user_info_intent = new Intent(this, MainActivity.class);
+            user_info_intent.putExtra("userDataArray", collectUserInformation());
+            startActivity(user_info_intent);
+        }
     }
 
     private String[] collectUserInformation(){
