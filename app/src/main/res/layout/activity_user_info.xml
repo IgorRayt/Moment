@@ -28,6 +28,14 @@
             android:singleLine="true" />
 
         <TextView
+            android:id="@+id/lbl_user_name_error"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="User Name is missing!"
+            android:visibility="gone"
+            android:textColor="@color/colorAccent" />
+
+        <TextView
             android:id="@+id/lbl_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -41,6 +49,13 @@
             android:ems="10"
             android:inputType="textEmailAddress"
             android:singleLine="true" />
+        <TextView
+            android:id="@+id/lbl_user_email_error"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="User Email is missing!"
+            android:visibility="gone"
+            android:textColor="@color/colorAccent"/>
 
         <TextView
             android:id="@+id/lbl_initial_time_amount"

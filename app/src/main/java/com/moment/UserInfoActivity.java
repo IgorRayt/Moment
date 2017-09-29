@@ -103,17 +103,40 @@ public class UserInfoActivity extends AppCompatActivity {
     private void checkUserInformation(){
         EditText userNameTextField = (EditText)findViewById(R.id.txt_name);
         EditText userEmailTextField = (EditText)findViewById(R.id.txt_email);
-        if(userNameTextField.getText().toString().equals("") ||
-                userNameTextField.getText().toString().equals(" ") ||
-                userEmailTextField.getText().toString().equals("")||
+        TextView lblUserEmailError = (TextView)findViewById(R.id.lbl_user_email_error);
+        TextView lblUserNameError = (TextView)findViewById(R.id.lbl_user_name_error);
+        Boolean userNameGood = false;
+        Boolean userEmailGood = false;
+        if(userEmailTextField.getText().toString().equals("")||
                 userEmailTextField.getText().toString().equals(" ")){
             Context context = getApplicationContext();
-            CharSequence text = "Error! User name or email is missing.";
-            int duration = Toast.LENGTH_LONG;
+            CharSequence text = "The toast message just for the assignment requirements.";
+            int duration = Toast.LENGTH_SHORT;
             Toast toast = Toast.makeText(context, text, duration);
             toast.show();
+            lblUserEmailError.setVisibility(View.VISIBLE);
         }
         else{
+            userEmailGood = true;
+            lblUserEmailError.setVisibility(View.GONE);
+        }
+        if(userNameTextField.getText().toString().equals("") ||
+                userNameTextField.getText().toString().equals(" ")){
+            Context context = getApplicationContext();
+            CharSequence text = "The toast message just for the assignment requirements.";
+            int duration = Toast.LENGTH_SHORT;
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+            lblUserNameError.setVisibility(View.VISIBLE);
+        }
+        else{
+            userNameGood = true;
+            lblUserNameError.setVisibility(View.GONE);
+        }
+
+        if(userEmailGood && userNameGood){
+            lblUserEmailError.setVisibility(View.GONE);
+            lblUserNameError.setVisibility(View.GONE);
             collectUserInformation();
             Intent user_info_intent = new Intent(this, MainActivity.class);
             user_info_intent.putExtra("userDataArray", collectUserInformation());
