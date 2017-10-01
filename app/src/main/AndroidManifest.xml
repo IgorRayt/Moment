@@ -13,8 +13,7 @@
         <activity
             android:name=".InitialStartActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/title_activity_initial_start"
-            android:theme="@style/FullscreenTheme">
+            android:label="@string/title_activity_initial_start">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

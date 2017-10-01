@@ -12,6 +12,9 @@ import android.widget.Toast;
 public class ScreenListenerService extends Service {
 
     BroadcastReceiver mReceiver=null;
+    String RUNNING_SCREEN_MESSAGE = "running";
+    String STOPPED_SCREEN_MESSAGE = "stopped";
+
     public ScreenListenerService() {
     }
 
@@ -42,6 +45,8 @@ public class ScreenListenerService extends Service {
 
             // your code here
             // Some time required to start any service
+
+            updateDatabase(RUNNING_SCREEN_MESSAGE);
             Toast.makeText(getBaseContext(), "Screen is on", Toast.LENGTH_SHORT).show();
             Log.i("ScreenServiceListener", "Screen is on");
 
@@ -49,9 +54,11 @@ public class ScreenListenerService extends Service {
 
             // your code here
             // Some time required to stop any service to save battery consumption
+            updateDatabase(STOPPED_SCREEN_MESSAGE);
             Toast.makeText(getBaseContext(), "Screen is off", Toast.LENGTH_SHORT).show();
             Log.i("ScreenServiceListener", "Screen is off");
         }
+
     }
 
     @Override
@@ -59,6 +66,20 @@ public class ScreenListenerService extends Service {
         // TODO: Return the communication channel to the service.
         throw new UnsupportedOperationException("Not yet implemented");
     }
+
+    private void updateDatabase(String screenState){
+        if (screenState.equals(RUNNING_SCREEN_MESSAGE)){
+            //update database with screen on event
+        }
+        if (screenState.equals(STOPPED_SCREEN_MESSAGE)){
+            //update database with screen off event
+        }
+        else{
+            //error
+        }
+
+    }
+
 
     @Override
     public void onDestroy() {
