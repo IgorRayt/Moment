@@ -6,4 +6,7 @@
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="InitialStartInformationTxt">Initial Start Information Text</string>
     <string name="go_to_app_btn">Go To The Application</string>
+    <string name="menu_home">Phone Time</string>
+    <string name="menu_stat">Statistics</string>
+    <string name="menu_settings">Settings</string>
 </resources>

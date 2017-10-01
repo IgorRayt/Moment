@@ -108,6 +108,16 @@ public class InitialStartActivity extends AppCompatActivity {
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
         findViewById(R.id.go_to_app_btn).setOnTouchListener(mDelayHideTouchListener);
+
+        View decorView = getWindow().getDecorView();
+        int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_FULLSCREEN;
+        decorView.setSystemUiVisibility(uiOptions);
+        //Intent user_info_intent = new Intent(this, UserInfoActivity.class);
+        //startActivity(user_info_intent);
+        Intent screenListenerService = new Intent(this, MaintainScreenListenerService.class);
+        //screenListenerService.setAction("com.moment.ScreenListenerService");
+        startService(screenListenerService);
     }
 
     @Override
