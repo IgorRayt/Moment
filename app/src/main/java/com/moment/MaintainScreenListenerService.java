@@ -24,15 +24,20 @@ public class MaintainScreenListenerService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-
+        createDatabase();
         // Toast.makeText(getBaseContext(), "Service on create", Toast.LENGTH_SHORT).show();
 
         // Register receiver that handles screen on and screen off logic
     }
 
+    private void createDatabase(){
+
+    }
+
     @Override
     public void onStart(Intent intent, int startId) {
         //check if service already running
+
         if(!isServiceRunning(ScreenListenerService.class)){
             IntentFilter filter = new IntentFilter(Intent.ACTION_SCREEN_ON);
             filter.addAction(Intent.ACTION_SCREEN_OFF);

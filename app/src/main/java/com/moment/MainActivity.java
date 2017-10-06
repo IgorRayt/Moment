@@ -1,14 +1,21 @@
 package com.moment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity {
+
+    private BottomNavigationView navBar;
+    private int selectedMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +27,32 @@ public class MainActivity extends AppCompatActivity {
         decorView.setSystemUiVisibility(uiOptions);
         fillInUserData();
 
+
+        navBar = (BottomNavigationView) findViewById(R.id.nav_bar);
+
+        navBar.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                openActivity(item);
+                return true;
+            }
+        });
+    }
+
+    private void openActivity(MenuItem item){
+        switch (item.getItemId()){
+            case R.id.menu_home:
+
+                break;
+            case R.id.menu_stat:
+
+                break;
+            case R.id.menu_settings:
+                Intent settings_intent = new Intent(this, SettingsActivity.class);
+                startActivity(settings_intent);
+                break;
+
+        }
     }
 
     private void fillInUserData(){

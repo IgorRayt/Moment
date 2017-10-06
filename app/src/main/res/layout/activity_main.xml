@@ -42,7 +42,7 @@
         </LinearLayout>
 
         <android.support.design.widget.BottomNavigationView
-            android:id="@+id/navigation"
+            android:id="@+id/nav_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             design:menu="@menu/nav_bar_items"
