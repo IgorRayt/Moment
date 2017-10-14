@@ -12,6 +12,9 @@ import android.util.Log;
 import static android.R.attr.filter;
 
 public class MaintainScreenListenerService extends Service {
+
+    DatabaseHelper myDb;
+
     public MaintainScreenListenerService() {
     }
     BroadcastReceiver mReceiver=null;

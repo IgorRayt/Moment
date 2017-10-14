@@ -8,13 +8,18 @@ import android.os.IBinder;
 import android.util.Log;
 import android.widget.Toast;
 
+import java.util.Date;
+
 
 public class ScreenListenerService extends Service {
 
     BroadcastReceiver mReceiver=null;
     String RUNNING_SCREEN_MESSAGE = "running";
     String STOPPED_SCREEN_MESSAGE = "stopped";
-
+    DatabaseHelper myDb;
+    Integer timeOn = (int) (new Date().getTime());;
+    Integer timeOff = (int) (new Date().getTime());;
+    boolean recordInserted;
     public ScreenListenerService() {
     }
 
@@ -68,16 +73,23 @@ public class ScreenListenerService extends Service {
     }
 
     private void updateDatabase(String screenState){
+        myDb = new DatabaseHelper(this);
         if (screenState.equals(RUNNING_SCREEN_MESSAGE)){
-            //update database with screen on event
+            timeOn = (int) (new Date().getTime());
         }
         if (screenState.equals(STOPPED_SCREEN_MESSAGE)){
-            //update database with screen off event
-        }
-        else{
-            //error
+            timeOff = (int) (new Date().getTime());
         }
 
+        if (timeOn < timeOff) {
+            recordInserted = myDb.insertData(timeOn, timeOff);
+            if(!recordInserted){
+                //fail the fuck everything
+            }
+            if(recordInserted){
+                Toast.makeText(getBaseContext(), "Data inserted", Toast.LENGTH_LONG).show();
+            }
+        }
     }
 
 
