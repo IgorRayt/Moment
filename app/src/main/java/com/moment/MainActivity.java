@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
     private BottomNavigationView navBar;
     private int selectedMenu;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         decorView.setSystemUiVisibility(uiOptions);
         fillInUserData();
 
-
+        /*
         navBar = (BottomNavigationView) findViewById(R.id.nav_bar);
 
         navBar.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+        */
     }
 
     private void openActivity(MenuItem item){

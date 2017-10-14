@@ -14,7 +14,8 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="8dp">
+            android:padding="8dp"
+            android:id="@+id/linearLayout">
 
             <TextView
                 android:id="@+id/lbl_user_name"
@@ -41,12 +42,19 @@
                 android:paddingTop="8dp"/>
         </LinearLayout>
 
-        <android.support.design.widget.BottomNavigationView
-            android:id="@+id/nav_bar"
-            android:layout_width="match_parent"
+        <!--<android.support.design.widget.BottomNavigationView-->
+            <!--android:id="@+id/nav_bar"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--design:menu="@menu/nav_bar_items"-->
+            <!--android:layout_alignParentBottom="true"/>-->
+        <fragment android:name="com.moment.NavigationBarFragment"
+            android:id="@+id/navBar"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            design:menu="@menu/nav_bar_items"
-            android:layout_alignParentBottom="true"/>
+            android:layout_alignParentBottom="true"
+            tools:layout="@layout/fragment_navigation_bar" />
+
 
     </RelativeLayout>
 
