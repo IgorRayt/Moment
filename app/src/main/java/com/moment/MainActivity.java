@@ -2,6 +2,7 @@ package com.moment;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -16,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
 
     private BottomNavigationView navBar;
     private int selectedMenu;
+    DatabaseHelper myDb;
 
 
     @Override
@@ -26,7 +28,8 @@ public class MainActivity extends AppCompatActivity {
         int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                 | View.SYSTEM_UI_FLAG_FULLSCREEN;
         decorView.setSystemUiVisibility(uiOptions);
-        fillInUserData();
+        showPhonePickUps();
+        //fillInUserData();
 
         /*
         navBar = (BottomNavigationView) findViewById(R.id.nav_bar);
@@ -57,7 +60,26 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void fillInUserData(){
+    private void showPhonePickUps(){
+        myDb = new DatabaseHelper(this);
+        Cursor data = myDb.getTodayPhonePickUps();
+        Cursor test = myDb.getAllData();
+        String countDat = "";
+        if (data.getCount() == 0){
+            //error
+            return;
+        }
+        TextView phonePickUpsLbl = (TextView)findViewById(R.id.lbl_phone_pick_ups);
+        //String countDat = data.getString(0);
+        while (data.moveToNext()){
+            countDat = data.getString(data.getColumnIndex("COUNT(*)"));
+        }
+
+
+        phonePickUpsLbl.setText(countDat);
+    }
+
+    /*private void fillInUserData(){
         Bundle extras = getIntent().getExtras();
 
         TextView userNameLbl = (TextView)findViewById(R.id.lbl_user_name);
@@ -108,5 +130,5 @@ public class MainActivity extends AppCompatActivity {
         userDataShareLbl.setText(userDataShareLblText);
 
 
-    }
+    }*/
 }
