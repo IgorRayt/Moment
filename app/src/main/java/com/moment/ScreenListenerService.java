@@ -78,7 +78,9 @@ public class ScreenListenerService extends Service {
         myDb = new DatabaseHelper(this);
         String dateString;
         Date date = new Date();
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
+        SimpleDateFormat dateTableFormat = new SimpleDateFormat("y-D");
+        //SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-DDD-HH-mm-ss");
+
         if (screenState.equals(RUNNING_SCREEN_MESSAGE)){
             timeOn = (int) (new Date().getTime());
         }
@@ -87,7 +89,7 @@ public class ScreenListenerService extends Service {
         }
 
         if (timeOn < timeOff) {
-            dateString = dateFormat.format(date);
+            dateString = dateTableFormat.format(date);
             recordInserted = myDb.insertData(timeOn, timeOff, dateString);
             if(!recordInserted){
                 //fail the fuck everything
@@ -105,6 +107,5 @@ public class ScreenListenerService extends Service {
         Log.i("ScreenServiceListener", "service destroyed");
         if(mReceiver!=null)
             unregisterReceiver(mReceiver);
-
     }
 }

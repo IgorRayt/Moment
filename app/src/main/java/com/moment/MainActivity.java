@@ -12,6 +12,10 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
                 | View.SYSTEM_UI_FLAG_FULLSCREEN;
         decorView.setSystemUiVisibility(uiOptions);
         showPhonePickUps();
+        showPhoneUseTime();
         //fillInUserData();
 
         /*
@@ -60,17 +65,48 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void showPhoneUseTime(){
+        SimpleDateFormat originalFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        myDb = new DatabaseHelper(this);
+        Cursor data = myDb.getAllData();
+        Date timeOn;
+        Date timeOff;
+        Date timeDiff;
+        Integer timeOnInt;
+        Integer timeOffInt;
+        TimeUnit timeUnit;
+
+        TextView phoneTimeUselbl = (TextView)findViewById(R.id.lbl_phone_use_time);
+        long phoneTimeUseCount = 0;
+        String phoneTimeUse = "";
+        while(data.moveToNext()){
+            timeOnInt = data.getInt(data.getColumnIndex("TimeOn"));
+            timeOn = new Date(timeOnInt);
+            timeOffInt = data.getInt(data.getColumnIndex("TimeOff"));
+            timeOff = new Date(timeOffInt);
+            phoneTimeUseCount += timeOff.getTime() - timeOn.getTime();
+
+            //timeOn = originalFormat.parse(Integer.toString(data.getInt(data.getColumnIndex("TimeOn"))));
+            //phoneTimeUseCount += originalFormat.format(data.getInt(data.getColumnIndex("TimeOn"))). -
+            //          data.getInt(data.getColumnIndex("TimeOff"));
+        }
+        //phoneTimeUse = timeUnit.convert(phoneTimeUseCount, TimeUnit.MILLISECONDS);
+         //   originalFormat.format(phoneTimeUseCount);
+
+        //phoneTimeUselbl.setText(originalFormat.format(phoneTimeUseCount));
+        phoneTimeUseCount = phoneTimeUseCount / 1000;
+        phoneTimeUselbl.setText(Long.toString(phoneTimeUseCount));
+    }
+
     private void showPhonePickUps(){
         myDb = new DatabaseHelper(this);
         Cursor data = myDb.getTodayPhonePickUps();
-        Cursor test = myDb.getAllData();
         String countDat = "";
         if (data.getCount() == 0){
             //error
             return;
         }
         TextView phonePickUpsLbl = (TextView)findViewById(R.id.lbl_phone_pick_ups);
-        //String countDat = data.getString(0);
         while (data.moveToNext()){
             countDat = data.getString(data.getColumnIndex("COUNT(*)"));
         }

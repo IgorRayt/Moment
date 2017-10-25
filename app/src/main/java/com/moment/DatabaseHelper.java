@@ -79,9 +79,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public Cursor getTodayPhonePickUps(){
         Date date = new Date();
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("y-D");
         String SQL_GET_TODAY_PHONE_PICK_UPS = "SELECT COUNT(*) FROM " +
                 SCREEN_TIME_TABLE_NAME + " WHERE Date = '" + dateFormat.format(date) +  "';";
+        //String SQL_GET_TODAY_PHONE_PICK_UPS = "SELECT COUNT(*) FROM " + SCREEN_TIME_TABLE_NAME + " ;";
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor data = db.rawQuery(SQL_GET_TODAY_PHONE_PICK_UPS, null);
         return data;
