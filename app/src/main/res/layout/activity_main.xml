@@ -40,6 +40,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="8dp"/>
+
+            <TextView
+                android:id="@+id/lbl_phone_pick_ups"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="8dp"/>
+            <TextView
+                android:id="@+id/lbl_phone_use_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="8dp"/> />
+            />
+
+
         </LinearLayout>
 
        <!-- <fragment

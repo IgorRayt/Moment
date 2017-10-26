@@ -2,6 +2,7 @@ package com.moment;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.FragmentActivity;
@@ -10,12 +11,17 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 
 public class MainActivity extends FragmentActivity {
 
     private BottomNavigationView navBar;
     private int selectedMenu;
+    DatabaseHelper myDb;
 
 
     @Override
@@ -26,7 +32,9 @@ public class MainActivity extends FragmentActivity {
         int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                 | View.SYSTEM_UI_FLAG_FULLSCREEN;
         decorView.setSystemUiVisibility(uiOptions);
-        fillInUserData();
+        showPhonePickUps();
+        showPhoneUseTime();
+        //fillInUserData();
 
         /*
         navBar = (BottomNavigationView) findViewById(R.id.nav_bar);
@@ -57,7 +65,57 @@ public class MainActivity extends FragmentActivity {
         }
     }
 
-    private void fillInUserData(){
+    private void showPhoneUseTime(){
+        SimpleDateFormat originalFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        myDb = new DatabaseHelper(this);
+        Cursor data = myDb.getAllData();
+        Date timeOn;
+        Date timeOff;
+        Date timeDiff;
+        Integer timeOnInt;
+        Integer timeOffInt;
+        TimeUnit timeUnit;
+
+        TextView phoneTimeUselbl = (TextView)findViewById(R.id.lbl_phone_use_time);
+        long phoneTimeUseCount = 0;
+        String phoneTimeUse = "";
+        while(data.moveToNext()){
+            timeOnInt = data.getInt(data.getColumnIndex("TimeOn"));
+            timeOn = new Date(timeOnInt);
+            timeOffInt = data.getInt(data.getColumnIndex("TimeOff"));
+            timeOff = new Date(timeOffInt);
+            phoneTimeUseCount += timeOff.getTime() - timeOn.getTime();
+
+            //timeOn = originalFormat.parse(Integer.toString(data.getInt(data.getColumnIndex("TimeOn"))));
+            //phoneTimeUseCount += originalFormat.format(data.getInt(data.getColumnIndex("TimeOn"))). -
+            //          data.getInt(data.getColumnIndex("TimeOff"));
+        }
+        //phoneTimeUse = timeUnit.convert(phoneTimeUseCount, TimeUnit.MILLISECONDS);
+         //   originalFormat.format(phoneTimeUseCount);
+
+        //phoneTimeUselbl.setText(originalFormat.format(phoneTimeUseCount));
+        phoneTimeUseCount = phoneTimeUseCount / 1000;
+        phoneTimeUselbl.setText(Long.toString(phoneTimeUseCount));
+    }
+
+    private void showPhonePickUps(){
+        myDb = new DatabaseHelper(this);
+        Cursor data = myDb.getTodayPhonePickUps();
+        String countDat = "";
+        if (data.getCount() == 0){
+            //error
+            return;
+        }
+        TextView phonePickUpsLbl = (TextView)findViewById(R.id.lbl_phone_pick_ups);
+        while (data.moveToNext()){
+            countDat = data.getString(data.getColumnIndex("COUNT(*)"));
+        }
+
+
+        phonePickUpsLbl.setText(countDat);
+    }
+
+    /*private void fillInUserData(){
         Bundle extras = getIntent().getExtras();
 
         TextView userNameLbl = (TextView)findViewById(R.id.lbl_user_name);
@@ -108,5 +166,5 @@ public class MainActivity extends FragmentActivity {
         userDataShareLbl.setText(userDataShareLblText);
 
 
-    }
+    }*/
 }

@@ -8,6 +8,8 @@ import android.os.IBinder;
 import android.util.Log;
 import android.widget.Toast;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
@@ -74,6 +76,11 @@ public class ScreenListenerService extends Service {
 
     private void updateDatabase(String screenState){
         myDb = new DatabaseHelper(this);
+        String dateString;
+        Date date = new Date();
+        SimpleDateFormat dateTableFormat = new SimpleDateFormat("y-D");
+        //SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-DDD-HH-mm-ss");
+
         if (screenState.equals(RUNNING_SCREEN_MESSAGE)){
             timeOn = (int) (new Date().getTime());
         }
@@ -82,7 +89,8 @@ public class ScreenListenerService extends Service {
         }
 
         if (timeOn < timeOff) {
-            recordInserted = myDb.insertData(timeOn, timeOff);
+            dateString = dateTableFormat.format(date);
+            recordInserted = myDb.insertData(timeOn, timeOff, dateString);
             if(!recordInserted){
                 //fail the fuck everything
             }
@@ -99,6 +107,5 @@ public class ScreenListenerService extends Service {
         Log.i("ScreenServiceListener", "service destroyed");
         if(mReceiver!=null)
             unregisterReceiver(mReceiver);
-
     }
 }
