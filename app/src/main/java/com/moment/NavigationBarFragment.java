@@ -70,10 +70,11 @@ public class NavigationBarFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         //return inflater.inflate(R.layout.fragment_navigation_bar, container, false);
+
         final View view =  inflater.inflate(R.layout.fragment_navigation_bar, container, false);
 
 
-        navBar = (BottomNavigationView) view.findViewById(R.id.nav_bar);
+        navBar = view.findViewById(R.id.nav_bar);
 
         navBar.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -84,6 +85,7 @@ public class NavigationBarFragment extends Fragment {
         });
 
         return view;
+
     }
 
     private void openActivity(MenuItem item, View view){
