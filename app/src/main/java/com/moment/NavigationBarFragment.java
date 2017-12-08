@@ -12,14 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link NavigationBarFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link NavigationBarFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class NavigationBarFragment extends Fragment {
     private BottomNavigationView navBar;
 
@@ -52,6 +44,9 @@ public class NavigationBarFragment extends Fragment {
             }
         });
 
+        Bundle arg  =getArguments();
+        int page = arg.getInt("page");
+        setState
         return view;
 
     }
@@ -69,7 +64,7 @@ public class NavigationBarFragment extends Fragment {
 
                 break;
             case R.id.menu_settings:
-                Intent settings_intent = new Intent(view.getContext(), SettingsActivity.class);
+                Intent settings_intent = new Intent(view.getContext(), SettingsPreviewActivity.class);
                 startActivity(settings_intent);
                 break;
 

@@ -7,15 +7,12 @@
     android:layout_height="match_parent"
     tools:context="com.moment.NavigationBarFragment">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <android.support.design.widget.BottomNavigationView
-            android:id="@+id/nav_bar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            design:menu="@menu/nav_bar_items"
-            />
-    </RelativeLayout>
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/nav_bar"
+        design:menu="@menu/nav_bar_items"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+
 
 </FrameLayout>

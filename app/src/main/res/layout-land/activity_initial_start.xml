@@ -35,16 +35,6 @@
             android:background="@color/black_overlay"
             android:orientation="horizontal"
             tools:ignore="UselessParent">
-
-            <Button
-                android:id="@+id/go_to_app_btn"
-                style="?metaButtonBarButtonStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:onClick="go_to_app_btn_press"
-                android:text="@string/go_to_app_btn" />
-
         </LinearLayout>
     </FrameLayout>
 

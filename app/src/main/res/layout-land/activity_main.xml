@@ -56,6 +56,15 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/nav_bar_fragment"
+            android:orientation="vertical"
+            android:layout_alignParentBottom="true">
+
+        </LinearLayout>
+
         <!-- <fragment
              android:id="@+id/fragment"
              android:name="android.support.v4.app.ListFragment"

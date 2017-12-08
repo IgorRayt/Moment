@@ -56,6 +56,15 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/nav_bar_fragment"
+            android:orientation="vertical"
+            android:layout_alignParentBottom="true">
+
+        </LinearLayout>
+
        <!-- <fragment
             android:id="@+id/fragment"
             android:name="android.support.v4.app.ListFragment"
@@ -72,14 +81,14 @@
             <!--android:layout_height="wrap_content"-->
             <!--design:menu="@menu/nav_bar_items"-->
             <!--android:layout_alignParentBottom="true"/>-->
-       <fragment
+       <!--<fragment
            android:id="@+id/navBar"
            class="com.moment.NavigationBarFragment"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
            android:layout_alignParentBottom="true"
            tools:layout="@layout/fragment_navigation_bar"
-           />
+           />-->
 
 
     </RelativeLayout>

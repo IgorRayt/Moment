@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -27,35 +29,15 @@ public class MainActivity extends FragmentActivity {
         decorView.setSystemUiVisibility(uiOptions);
         showPhonePickUps();
         showPhoneUseTime();
-        //fillInUserData();
-
-        /*
-        navBar = (BottomNavigationView) findViewById(R.id.nav_bar);
-
-        navBar.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                openActivity(item);
-                return true;
-            }
-        });
-        */
+        popNavigationBar();
     }
 
-    private void openActivity(MenuItem item){
-        switch (item.getItemId()){
-            case R.id.menu_home:
+    private void popNavigationBar(){
+        NavigationBarFragment nav_bar = new NavigationBarFragment();
 
-                break;
-            case R.id.menu_stat:
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.nav_bar_fragment, nav_bar, nav_bar.getClass().getSimpleName()).addToBackStack(null).commit();
 
-                break;
-            case R.id.menu_settings:
-                Intent settings_intent = new Intent(this, SettingsActivity.class);
-                startActivity(settings_intent);
-                break;
-
-        }
     }
 
     private void showPhoneUseTime(){
