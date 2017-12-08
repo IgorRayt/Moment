@@ -1,13 +1,13 @@
 package com.moment;
 
 import android.annotation.SuppressLint;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
-import android.content.Intent;
 
 
 /**
@@ -75,6 +75,7 @@ public class InitialStartActivity extends AppCompatActivity {
      * system UI. This is to prevent the jarring behavior of controls going away
      * while interacting with activity UI.
      */
+
     private final View.OnTouchListener mDelayHideTouchListener = new View.OnTouchListener() {
         @Override
         public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -84,6 +85,8 @@ public class InitialStartActivity extends AppCompatActivity {
             return false;
         }
     };
+
+    DatabaseController dbController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,6 +121,20 @@ public class InitialStartActivity extends AppCompatActivity {
         Intent screenListenerService = new Intent(this, MaintainScreenListenerService.class);
         //screenListenerService.setAction("com.moment.ScreenListenerService");
         startService(screenListenerService);
+
+        checkForTheUser();
+    }
+
+    private void checkForTheUser(){
+        dbController = new DatabaseController(this);
+        Intent next_activity;
+        if (dbController.isUserExists()){
+            next_activity = new Intent(this, MainActivity.class);
+        }
+        else{
+            next_activity = new Intent(this, UserInfoActivity.class);
+        }
+        startActivity(next_activity);
     }
 
     @Override
@@ -171,11 +188,5 @@ public class InitialStartActivity extends AppCompatActivity {
     private void delayedHide(int delayMillis) {
         mHideHandler.removeCallbacks(mHideRunnable);
         mHideHandler.postDelayed(mHideRunnable, delayMillis);
-    }
-
-    public void go_to_app_btn_press(View view){
-        Intent user_info_intent = new Intent(this, UserInfoActivity.class);
-        startActivity(user_info_intent);
-
     }
 }

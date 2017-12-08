@@ -3,7 +3,6 @@ package com.moment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
@@ -16,8 +15,10 @@ import android.widget.Toast;
 
 public class UserInfoActivity extends AppCompatActivity {
 
+    DatabaseController dbController;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_info);
 
@@ -125,10 +126,29 @@ public class UserInfoActivity extends AppCompatActivity {
 
     public void btn_start_application_press(View view){
 
-        checkUserInformation();
+        if (checkUserInformation()){
+            handleUserInfo();
+        }
+
     }
 
-    private void checkUserInformation(){
+    private void handleUserInfo(){
+        String[] userData = collectUserInformation();
+        dbController = new DatabaseController(this);
+        if (dbController.insertUserData(userData[0], userData[1],
+                Integer.parseInt(userData[2]), Integer.parseInt(userData[3]))) {
+            Intent user_info_intent = new Intent(this, MainActivity.class);
+            user_info_intent.putExtra("userDataArray", userData);
+            startActivity(user_info_intent);
+        }
+        else{
+            Toast toast = Toast.makeText(this, "Error adding the user",
+                    Toast.LENGTH_SHORT);
+            toast.show();
+        }
+    }
+
+    private Boolean checkUserInformation(){
         EditText userNameTextField = (EditText)findViewById(R.id.txt_name);
         EditText userEmailTextField = (EditText)findViewById(R.id.txt_email);
         TextView lblUserEmailError = (TextView)findViewById(R.id.lbl_user_email_error);
@@ -165,10 +185,15 @@ public class UserInfoActivity extends AppCompatActivity {
         if(userEmailGood && userNameGood){
             lblUserEmailError.setVisibility(View.GONE);
             lblUserNameError.setVisibility(View.GONE);
+            return true;
+            /*
             collectUserInformation();
             Intent user_info_intent = new Intent(this, MainActivity.class);
             user_info_intent.putExtra("userDataArray", collectUserInformation());
-            startActivity(user_info_intent);
+            startActivity(user_info_intent);*/
+        }
+        else{
+            return false;
         }
     }
 
