@@ -10,6 +10,8 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 
 
 public class NavigationBarFragment extends Fragment {
@@ -43,19 +45,20 @@ public class NavigationBarFragment extends Fragment {
                 return true;
             }
         });
-
-        Bundle arg  = getArguments();
-        int page = arg.getInt("page");
         return view;
-
     }
 
     private void openActivity(MenuItem item, View view){
         switch (item.getItemId()){
-            case R.id.menu_home:
-                Intent main_intent = new Intent(view.getContext(), MainActivity.class);
-                startActivity(main_intent);
+            case R.id.menu_home:/*
+                NavigationBarFragment nav_bar = new NavigationBarFragment();
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
+                transaction.replace(R.id.container_layout, fragment).commit();
+
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.nav_bar_fragment, nav_bar, nav_bar.getClass().getSimpleName()).addToBackStack(null).commit();
+*/
                 break;
             case R.id.menu_stat:
                 Intent stat_intent = new Intent(view.getContext(), StatisticsActivity.class);

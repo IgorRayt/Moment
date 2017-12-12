@@ -2,6 +2,7 @@ package com.moment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -27,10 +28,36 @@ public class MainActivity extends FragmentActivity {
         int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                 | View.SYSTEM_UI_FLAG_FULLSCREEN;
         decorView.setSystemUiVisibility(uiOptions);
-        showPhonePickUps();
-        showPhoneUseTime();
-        popNavigationBar();
+
+        navBar = findViewById(R.id.nav_bar);
+
+        navBar.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                openActivity(item);
+                return true;
+            }
+        });
+        //popNavigationBar();
     }
+
+    private void openActivity(MenuItem item){
+        switch (item.getItemId()){
+            case R.id.menu_home:
+                MainPageFragment main_page = new MainPageFragment();
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.main_page_fragment, main_page, main_page.getClass().getSimpleName()).addToBackStack(null).commit();
+
+                break;
+            case R.id.menu_stat:
+
+                break;
+            case R.id.menu_settings:
+                break;
+
+        }
+    }
+
 
     private void popNavigationBar(){
         NavigationBarFragment nav_bar = new NavigationBarFragment();
@@ -41,21 +68,4 @@ public class MainActivity extends FragmentActivity {
                 .replace(R.id.nav_bar_fragment, nav_bar, nav_bar.getClass().getSimpleName()).addToBackStack(null).commit();
 
     }
-
-    private void showPhoneUseTime(){
-        dbController = new DatabaseController(this);
-        String totalPhoneUseTime = Long.toString(dbController.getTotalPhoneUseTime());
-        TextView phoneUseTimeLbl = (TextView)findViewById(R.id.lbl_phone_use_time);
-        phoneUseTimeLbl.setText(totalPhoneUseTime);
-    }
-
-
-    private void showPhonePickUps(){
-        TextView phonePickUpsLbl = (TextView)findViewById(R.id.lbl_phone_pick_ups);
-        dbController = new DatabaseController(this);
-        String totalPhonePickUps = Long.toString(dbController.getTodayPhonePickUps());
-
-        phonePickUpsLbl.setText(totalPhonePickUps);
-    }
-
 }
