@@ -44,9 +44,8 @@ public class NavigationBarFragment extends Fragment {
             }
         });
 
-        Bundle arg  =getArguments();
+        Bundle arg  = getArguments();
         int page = arg.getInt("page");
-        setState
         return view;
 
     }

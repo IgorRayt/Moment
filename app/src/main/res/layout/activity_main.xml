@@ -15,45 +15,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="8dp"
-            android:id="@+id/linearLayout">
-
-            <TextView
-                android:id="@+id/lbl_user_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="8dp"/>
-
-            <TextView
-                android:id="@+id/lbl_user_email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="8dp"/>
-
-            <TextView
-                android:id="@+id/lbl_phone_use"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="8dp"/>
-
-            <TextView
-                android:id="@+id/lbl_data_share"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="8dp"/>
-
-            <TextView
-                android:id="@+id/lbl_phone_pick_ups"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="8dp"/>
-            <TextView
-                android:id="@+id/lbl_phone_use_time"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="8dp"/> />
-            />
-
-
+            android:id="@+id/main_page_fragment">
         </LinearLayout>
 
         <LinearLayout
@@ -64,33 +26,6 @@
             android:layout_alignParentBottom="true">
 
         </LinearLayout>
-
-       <!-- <fragment
-            android:id="@+id/fragment"
-            android:name="android.support.v4.app.ListFragment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/linearLayout"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="26dp" />-->
-
-        <!--<android.support.design.widget.BottomNavigationView-->
-            <!--android:id="@+id/nav_bar"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--design:menu="@menu/nav_bar_items"-->
-            <!--android:layout_alignParentBottom="true"/>-->
-       <!--<fragment
-           android:id="@+id/navBar"
-           class="com.moment.NavigationBarFragment"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:layout_alignParentBottom="true"
-           tools:layout="@layout/fragment_navigation_bar"
-           />-->
-
-
     </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>
