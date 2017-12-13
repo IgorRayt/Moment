@@ -130,6 +130,8 @@ public class InitialStartActivity extends AppCompatActivity {
         Intent next_activity;
         if (dbController.isUserExists()){
             next_activity = new Intent(this, MainActivity.class);
+            next_activity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            finish();
         }
         else{
             next_activity = new Intent(this, UserInfoActivity.class);

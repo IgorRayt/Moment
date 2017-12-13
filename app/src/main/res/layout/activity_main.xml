@@ -15,7 +15,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="8dp"
-            android:id="@+id/main_page_fragment">
+            android:id="@+id/fragment_element">
         </LinearLayout>
 
         <LinearLayout

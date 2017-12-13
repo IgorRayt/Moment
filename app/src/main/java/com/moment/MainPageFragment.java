@@ -1,7 +1,6 @@
 package com.moment;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -12,7 +11,6 @@ import android.widget.TextView;
 
 public class MainPageFragment extends Fragment {
 
-    private OnFragmentInteractionListener mListener;
     Context activityContext;
     DatabaseController dbController;
     public MainPageFragment() {
@@ -20,7 +18,7 @@ public class MainPageFragment extends Fragment {
     }
 
 
-    public static MainPageFragment newInstance(String param1, String param2) {
+    public static MainPageFragment newInstance() {
         MainPageFragment fragment = new MainPageFragment();
         return fragment;
     }
@@ -52,18 +50,5 @@ public class MainPageFragment extends Fragment {
         String totalPhonePickUps = Long.toString(dbController.getTodayPhonePickUps());
 
         phonePickUpsLbl.setText(totalPhonePickUps);
-    }
-
-
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
-
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
     }
 }

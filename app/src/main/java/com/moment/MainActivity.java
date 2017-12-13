@@ -1,23 +1,17 @@
 package com.moment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 
 
 public class MainActivity extends FragmentActivity {
 
     private BottomNavigationView navBar;
-    private int selectedMenu;
-    DatabaseHelper myDb;
-    DatabaseController dbController;
 
 
     @Override
@@ -38,34 +32,50 @@ public class MainActivity extends FragmentActivity {
                 return true;
             }
         });
-        //popNavigationBar();
+        callStartFragment();
+    }
+
+    @Override
+    public void onBackPressed(){
+        finish();
+    }
+
+    private void callStartFragment(){
+        MainPageFragment mainPage = new MainPageFragment();
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_element, mainPage,mainPage.getClass().getSimpleName())
+                .addToBackStack(null).commit();
     }
 
     private void openActivity(MenuItem item){
+        FragmentManager fManager = getSupportFragmentManager();
+        fManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+
         switch (item.getItemId()){
             case R.id.menu_home:
-                MainPageFragment main_page = new MainPageFragment();
+                MainPageFragment mainPage = new MainPageFragment();
                 getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.main_page_fragment, main_page, main_page.getClass().getSimpleName()).addToBackStack(null).commit();
-
+                        .replace(R.id.fragment_element, mainPage,
+                                mainPage.getClass().getSimpleName())
+                                .addToBackStack(null).commit();
                 break;
             case R.id.menu_stat:
-
+                StatisticsPageFragment statisticsPage = new StatisticsPageFragment();
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_element, statisticsPage,
+                                statisticsPage.getClass().getSimpleName())
+                                .addToBackStack(null).commit();
                 break;
             case R.id.menu_settings:
+                SettingsPreviewPageFragment settingsPreviewPageFragment =
+                        new SettingsPreviewPageFragment();
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_element, settingsPreviewPageFragment,
+                                settingsPreviewPageFragment.getClass().getSimpleName())
+                                .addToBackStack(null).commit();
                 break;
 
         }
-    }
-
-
-    private void popNavigationBar(){
-        NavigationBarFragment nav_bar = new NavigationBarFragment();
-        Bundle arg = new Bundle();
-        arg.putInt("page", 0);
-        nav_bar.setArguments(arg);
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.nav_bar_fragment, nav_bar, nav_bar.getClass().getSimpleName()).addToBackStack(null).commit();
 
     }
 }
