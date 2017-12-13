@@ -24,7 +24,8 @@
         <LinearLayout
             android:id="@+id/fullscreen_content_controls"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
         </LinearLayout>
     </FrameLayout>
 
@@ -34,16 +35,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_above="@+id/go_to_app_btn"
         app:srcCompat="@drawable/tempus_logo" />
 
-    <Button
-        android:layout_margin="32dp"
-        android:layout_marginBottom="20dp"
-        android:id="@+id/go_to_app_btn"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:onClick="go_to_app_btn_press"
-        android:text="@string/go_to_app_btn"
-        android:layout_alignParentBottom="true"/>
 </RelativeLayout>

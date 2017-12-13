@@ -139,7 +139,11 @@ public class UserInfoActivity extends AppCompatActivity {
                 Integer.parseInt(userData[2]), Integer.parseInt(userData[3]))) {
             Intent user_info_intent = new Intent(this, MainActivity.class);
             user_info_intent.putExtra("userDataArray", userData);
+
+            user_info_intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                    Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(user_info_intent);
+            finish();
         }
         else{
             Toast toast = Toast.makeText(this, "Error adding the user",
