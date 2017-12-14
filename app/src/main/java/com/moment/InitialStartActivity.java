@@ -134,6 +134,8 @@ public class InitialStartActivity extends AppCompatActivity {
         }
         else{
             next_activity = new Intent(this, UserInfoActivity.class);
+            next_activity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            finish();
         }
         startActivity(next_activity);
     }
