@@ -205,4 +205,19 @@ public class DatabaseController {
             return false;
         }
     }
+
+    public Integer getUserDailyHoursLimit(){
+        myDb = new DatabaseHelper(appContext);
+        Cursor data = myDb.getUserDailyHoursLimit();
+        Integer hours = 0;
+        if(data != null && data.getCount()>0){
+            while(data.moveToNext()){
+                hours = data.getInt(data.getColumnIndex("time_goal"));
+            }
+        }
+        else{
+            //error as no data exists
+        }
+        return hours;
+    }
 }

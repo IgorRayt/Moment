@@ -3,12 +3,10 @@ package com.moment;
 import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.IBinder;
 import android.util.Log;
 import android.widget.Toast;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -22,6 +20,7 @@ public class ScreenListenerService extends Service {
     Integer timeOn = (int) (new Date().getTime());;
     Integer timeOff = (int) (new Date().getTime());;
     boolean recordInserted;
+    DatabaseController dbController;
     public ScreenListenerService() {
     }
 
@@ -97,15 +96,20 @@ public class ScreenListenerService extends Service {
             if(recordInserted){
                 Toast.makeText(getBaseContext(), "Data inserted", Toast.LENGTH_LONG).show();
             }
+            checkDailyUsage();
         }
     }
 
+    private void checkDailyUsage(){
+        dbController = new DatabaseController(this);
+        Integer hoursLimit;
+        Integer hoursUsed;
+        hoursLimit = dbController.getUserDailyHoursLimit();
 
-    @Override
-    public void onDestroy() {
-        //right down data into database, then destroy service
-        Log.i("ScreenServiceListener", "service destroyed");
-        if(mReceiver!=null)
-            unregisterReceiver(mReceiver);
+        //get the user daily max
+        // get the screen hours today
+        //compare, if exceeds, show notification
+        //set share preference to today date, to disable same notifications later today
     }
+
 }

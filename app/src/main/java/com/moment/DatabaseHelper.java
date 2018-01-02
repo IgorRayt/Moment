@@ -44,8 +44,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             " INTEGER, " + PHONE_TIME_GOAL_USER_DATA + " INTEGER);";
     public static final String SQL_GET_ALL_DATA_USER_DATA_TB = "SELECT * FROM " +
             USER_DATA_TABLE_NAME + ";";
-    public static final String SQAL_GET_USER_NAME_USER_DATA_TB = "SELECT " + USER_NAME_USER_DATA +
+    public static final String SQL_GET_USER_NAME_USER_DATA_TB = "SELECT " + USER_NAME_USER_DATA +
             " FROM " + USER_DATA_TABLE_NAME + ";";
+    public static final String SQL_GET_USER_GOAL_HOURS_USER_DATA_TB = "SELECT" +
+            PHONE_TIME_GOAL_USER_DATA + " FROM " + USER_DATA_TABLE_NAME + ";";
 
 
     //useless table!!!!! Delete after marking the assignment 2!!!!!!!!!!!!
@@ -169,6 +171,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         else{
             return true;
         }
+    }
+
+    public Cursor getUserDailyHoursLimit(){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor data = db.rawQuery(SQL_GET_USER_GOAL_HOURS_USER_DATA_TB, null);
+        return data;
     }
 
 }
