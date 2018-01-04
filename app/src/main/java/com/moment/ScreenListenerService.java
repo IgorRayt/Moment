@@ -96,7 +96,7 @@ public class ScreenListenerService extends Service {
             if(recordInserted){
                 Toast.makeText(getBaseContext(), "Data inserted", Toast.LENGTH_LONG).show();
             }
-            checkDailyUsage();
+            //checkDailyUsage();
         }
     }
 

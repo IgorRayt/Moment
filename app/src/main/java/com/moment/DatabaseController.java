@@ -3,6 +3,7 @@ package com.moment;
 import android.content.Context;
 import android.database.Cursor;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -68,12 +69,42 @@ public class DatabaseController {
         return getPhoneUseTimeFromCursor(data);
     }
 
-    public Long getTotalPhoneUseTime(){
+    public ArrayList<DateObjectStatistics> getStatisticsPhoneUseTime(){
         myDb = new DatabaseHelper(appContext);
         Cursor data = myDb.getAllData();
-
-        return getPhoneUseTimeFromCursor(data);
+        ArrayList<DateObjectStatistics> statistics = new ArrayList<>();
+        Date timeOn;
+        Date timeOff;
+        Integer timeOnInt;
+        Integer timeOffInt;
+        long phoneTimeUseCount = 0;
+        String dateFromRecord = "";
+        String previousDateFromRecord = "";
+        Boolean firstRecotd = true;
+        while(data.moveToNext()) {
+            if (firstRecotd) {
+                previousDateFromRecord = data.getString(data.getColumnIndex("Date"));
+                firstRecotd = false;
+            }
+            timeOnInt = data.getInt(data.getColumnIndex("TimeOn"));
+            timeOn = new Date(timeOnInt);
+            timeOffInt = data.getInt(data.getColumnIndex("TimeOff"));
+            timeOff = new Date(timeOffInt);
+            dateFromRecord = data.getString(data.getColumnIndex("Date"));
+            if (dateFromRecord.equals(previousDateFromRecord)) {
+                phoneTimeUseCount += timeOff.getTime() - timeOn.getTime();
+            }
+            else{
+                DateObjectStatistics dateObjectStatistics =
+                        new DateObjectStatistics(phoneTimeUseCount, dateFromRecord);
+                statistics.add(dateObjectStatistics);
+                previousDateFromRecord =  dateFromRecord;
+                phoneTimeUseCount = 0L;
+            }
+        }
+        return statistics;
     }
+
 
     private Long getPhoneUseTimeFromCursor(Cursor data){
 
