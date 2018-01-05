@@ -5,22 +5,64 @@
     tools:context="com.moment.SettingsPreviewPageFragment">
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="8dp">
-
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Settings Preview Fragment" />
-
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Settings are not implemented yet. Coming soon!" />
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/btn_open_settings"
             android:text="Go To Settings" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/fragment_bloop"
+            android:orientation="horizontal">
+        </LinearLayout>
+
     </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_alignParentBottom="true">
+
+            <Button
+                android:id="@+id/btn_mail"
+                style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Mail Us" />
+
+            <Button
+                android:id="@+id/btn_text"
+                style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Text Us" />
+
+            <Button
+                android:id="@+id/btn_display_developer"
+                style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="blooper" />
+        </LinearLayout>
+
+    </RelativeLayout>
 
 </FrameLayout>

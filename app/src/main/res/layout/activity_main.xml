@@ -12,10 +12,11 @@
 
         <LinearLayout
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical"
             android:padding="8dp"
-            android:id="@+id/fragment_element">
+            android:id="@+id/fragment_element"
+            android:layout_above="@+id/nav_bar_container">
         </LinearLayout>
 
         <LinearLayout

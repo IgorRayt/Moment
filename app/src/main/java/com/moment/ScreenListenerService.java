@@ -5,7 +5,6 @@ import android.content.BroadcastReceiver;
 import android.content.Intent;
 import android.os.IBinder;
 import android.util.Log;
-import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -53,7 +52,6 @@ public class ScreenListenerService extends Service {
             // Some time required to start any service
 
             updateDatabase(RUNNING_SCREEN_MESSAGE);
-            Toast.makeText(getBaseContext(), "Screen is on", Toast.LENGTH_SHORT).show();
             Log.i("ScreenServiceListener", "Screen is on");
 
         } else {
@@ -61,7 +59,6 @@ public class ScreenListenerService extends Service {
             // your code here
             // Some time required to stop any service to save battery consumption
             updateDatabase(STOPPED_SCREEN_MESSAGE);
-            Toast.makeText(getBaseContext(), "Screen is off", Toast.LENGTH_SHORT).show();
             Log.i("ScreenServiceListener", "Screen is off");
         }
 
@@ -91,10 +88,8 @@ public class ScreenListenerService extends Service {
             dateString = dateTableFormat.format(date);
             recordInserted = myDb.insertData(timeOn, timeOff, dateString);
             if(!recordInserted){
-                //fail the fuck everything
             }
             if(recordInserted){
-                Toast.makeText(getBaseContext(), "Data inserted", Toast.LENGTH_LONG).show();
             }
             //checkDailyUsage();
         }

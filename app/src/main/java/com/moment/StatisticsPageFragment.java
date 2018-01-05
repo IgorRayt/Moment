@@ -51,6 +51,7 @@ public class StatisticsPageFragment extends Fragment {
         ArrayAdapter<String> arrayAdapter =
                 new ArrayAdapter<String>(activityContext, android.R.layout.simple_list_item_1,
                         statisicsConverted);
+
         lstStatistics.setAdapter(arrayAdapter);
     }
 

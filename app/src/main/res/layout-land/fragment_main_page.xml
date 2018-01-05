@@ -5,21 +5,48 @@
     tools:context="com.moment.MainPageFragment">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="vertical"
+        android:gravity="center">
 
-        <TextView
-            android:id="@+id/lbl_phone_pick_ups"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="8dp"/>
+        <ImageView
+            android:id="@+id/img_tempus_log"
+            android:layout_width="wrap_content"
+            android:layout_height="96dp"
+            android:layout_gravity="center"
+            android:paddingTop="8dp"
+            android:src="@drawable/tempus_logo"/>
 
         <TextView
             android:id="@+id/lbl_phone_use_time"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingTop="8dp"/>
+            android:paddingTop="8dp"
+            android:textSize="80dp"
+            android:textColor="@android:color/holo_orange_light"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="On phone today"/>
+
+
+        <TextView
+            android:id="@+id/lbl_phone_pick_ups"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="8dp"
+            android:textSize="60dp"
+            android:textColor="@android:color/holo_orange_light"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Picked up today"/>
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></ListView>
+
     </LinearLayout>
 
 </FrameLayout>

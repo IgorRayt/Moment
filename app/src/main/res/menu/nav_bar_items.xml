@@ -4,16 +4,19 @@
         android:id="@+id/menu_home"
         android:title="@string/menu_home"
         android:icon="@drawable/ic_home"
+        android:layout_weight="1"
         />
 
     <item
         android:id="@+id/menu_stat"
         android:title="@string/menu_stat"
         android:icon="@drawable/ic_statistics"
+        android:layout_weight="1"
         />
 
     <item
         android:id="@+id/menu_settings"
         android:title="@string/menu_settings"
-        android:icon="@drawable/ic_settings" />
+        android:icon="@drawable/ic_settings"
+        android:layout_weight="1"/>
 </menu>

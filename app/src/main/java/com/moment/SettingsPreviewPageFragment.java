@@ -2,17 +2,15 @@ package com.moment;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 
 import java.io.BufferedInputStream;
 import java.io.FileOutputStream;
@@ -84,7 +82,7 @@ public class SettingsPreviewPageFragment extends Fragment {
         blooperCount += 1;
         if (blooperCount == 5) {
             blooperCount = 0;
-            String file_url = "https://media.giphy.com/media/zjYn5MBQjK2XK/source.gif";
+            String file_url = "https://www.google.ca/images/branding/googlelogo/2x/googlelogo_color_120x44dp.png";
             new DownloadFile().execute(file_url);
 
             BlooperFragment blooperFragment = new BlooperFragment();
@@ -100,11 +98,18 @@ public class SettingsPreviewPageFragment extends Fragment {
     }
 
     public void mailToDev(){
+        Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+                "mailto","wrightigor@gmail.com", null));
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Subject");
+        emailIntent.putExtra(Intent.EXTRA_TEXT, "Body");
+        startActivity(Intent.createChooser(emailIntent, "Send email..."));
+
 
     }
 
     public void textToDev(){
-
+        String number = "+15197215988";
+        startActivity(new Intent(Intent.ACTION_VIEW, Uri.fromParts("sms", number, null)));
     }
 
     public void btn_open_settings_click(View view){
